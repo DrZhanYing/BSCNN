@@ -36,7 +36,7 @@ def getOneClass(data,label,classNO):
             nbClassNumber+=1
     #print(nbClassNumber)
     
-    dataOneClass=np.zeros([nbClassNumber,dataBandNumber])#[1428,200]如果是第一类的话
+    dataOneClass=np.zeros([nbClassNumber,dataBandNumber])#[1428,200]
     
     nbClassNumber=0
     for i in range(data.shape[0]):
@@ -51,7 +51,7 @@ def getOneClass(data,label,classNO):
 
 def getData(datafilepath):
     aaa=np.load(datafilepath)#read from file
-    data=aaa["arr_0"]#里面的值是原始值
+    data=aaa["arr_0"]#
     label=aaa["arr_1"]
     
     Dtrain=np.empty((1600,1,200),dtype="float32")
@@ -101,7 +101,7 @@ def getDataindiafrom_mat():
     
 
     
-    dataNormal=np.empty((10249,1,200),dtype="float32")#21025=145*145 ; 其中的0标签是没有标记的标签,有10776个，要剔除
+    dataNormal=np.empty((10249,1,200),dtype="float32")#
     dataOringin=np.empty((10249,1,200),dtype="float32")
     label=np.empty((10249),dtype="int32")
     
@@ -116,11 +116,11 @@ def getDataindiafrom_mat():
     for i in range(145):#find the no.14 class
         for j in range(145):        
             if (l[i,j]!=0):           
-                dataNormal[index,0,:]=d[i,j,:]#获得数据
-                dataOringin[index,0,:]=dOri[i,j,:]#获得原始数据
-                label[index]=l[i,j]-1#为了后续训练方便，挑出的像素标签相应减1
+                dataNormal[index,0,:]=d[i,j,:]#
+                dataOringin[index,0,:]=dOri[i,j,:]#
+                label[index]=l[i,j]-1#
                 #print(i,j,l[i,j],label[index])
-                dictofclass[label[index]] += 1 #相应类别数量加1            
+                dictofclass[label[index]] += 1
                 index += 1
     
     
@@ -132,7 +132,7 @@ def getDataindiafrom_mat():
 
 def getDataindia(filepath):
     aaa=np.load(filepath)#read from file
-    data=aaa["arr_0"]#里面的值是原始值
+    data=aaa["arr_0"]#
     label=aaa["arr_1"]
     
     
@@ -143,12 +143,12 @@ def getDataindia(filepath):
 
 def TrainTestSplit(data,label, test_size):
     
-    datasize=data.shape[0] #获得数据的第一维 也是样本的总个数
+    datasize=data.shape[0] 
     
     if data.shape[1]==1:
         data=data.reshape([data.shape[0],data.shape[2]])
 
-    dataBandNumber=data.shape[1]#获得数据的第二维，也是样本的波段数
+    dataBandNumber=data.shape[1]#
     
     testsize=int(datasize*test_size)
     trainsize=datasize-testsize
@@ -190,7 +190,7 @@ def TrainTestSplit(data,label, test_size):
 
 def getLabel(filepath):
     aaa=np.load(filepath)#read from file
-    data=aaa["arr_0"]#里面的值是原始值
+    data=aaa["arr_0"]#
     label=aaa["arr_1"]
     
     Dtrain=np.empty((1600,1,200),dtype="float32")
@@ -220,7 +220,7 @@ def getLabel(filepath):
     #print(label.shape[0],'labels')
     
     
-    #把整形数值变成向量
+
     LtrainVex = np_utils.to_categorical(LtrainOri, 10)
     LtestVex = np_utils.to_categorical(LtestOri, 10)
     
